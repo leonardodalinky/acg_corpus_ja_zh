@@ -1,12 +1,9 @@
 from typing import *
 
-__all__ = [
-    "Document",
-    "filter_docs_by_threshold"
-]
+__all__ = ["DocumentEpub", "filter_docs_by_threshold"]
 
 
-class Document:
+class DocumentEpub:
     __REPR_TEXT_LEN__ = 20
 
     def __init__(
@@ -24,12 +21,14 @@ class Document:
         return self.text
 
     def __repr__(self):
-        return f"<Document(title={self.title}, chapter_id={self.chapter_id}, len={len(self)}, text=\"{self.text[:self.__REPR_TEXT_LEN__]}\")>"
+        return f'<Document(title={self.title}, chapter_id={self.chapter_id}, len={len(self)}, text="{self.text[:self.__REPR_TEXT_LEN__]}")>'
 
 
 def filter_docs_by_threshold(
-    docs: List[Document], threshold: float = 0.05, min_keep_len: int = 1000,
-) -> List[Document]:
+    docs: List[DocumentEpub],
+    threshold: float = 0.05,
+    min_keep_len: int = 1000,
+) -> List[DocumentEpub]:
     """
     Filter documents by the ratio of length. The percentage of documents that are filtered out is less than threshold.
 
