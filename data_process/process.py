@@ -30,10 +30,10 @@ __all__ = [
 def my_print_alignments(alignments, scores=None, file=sys.stdout):
     if scores is not None:
         for (x, y), s in zip(alignments, scores):
-            print('%s:%s:%.6f' % (x, y, s))
+            print("%s:%s:%.6f" % (x, y, s))
     else:
         for x, y in alignments:
-            print('%s:%s' % (x, y))
+            print("%s:%s" % (x, y))
 
 
 def generate_alignments(
@@ -113,7 +113,9 @@ def generate_multi_alignments(
     cpu_only=False,
 ) -> List[List[Alignment]]:
     assert len(src_filepaths) == len(tgt_filepaths), "src and tgt filepaths must have the same length"
-    model = SentenceTransformer("sentence-transformers/LaBSE", device="cpu" if cpu_only or not torch.cuda.is_available() else "cuda")
+    model = SentenceTransformer(
+        "sentence-transformers/LaBSE", device="cpu" if cpu_only or not torch.cuda.is_available() else "cuda"
+    )
     model.max_seq_length = 500
     ret = []
     for src_file, tgt_file in zip(src_filepaths, tgt_filepaths):
@@ -131,7 +133,9 @@ def generate_text_pairs(
     cpu_only=False,
 ) -> List[List[Dict[str, Any]]]:
     assert len(src_filepaths) == len(tgt_filepaths), "src and tgt filepaths must have the same length"
-    multi_aligns = generate_multi_alignments(src_filepaths, tgt_filepaths, n_overlaps=n_overlaps, max_alignment_size=max_alignment_size, cpu_only=cpu_only)
+    multi_aligns = generate_multi_alignments(
+        src_filepaths, tgt_filepaths, n_overlaps=n_overlaps, max_alignment_size=max_alignment_size, cpu_only=cpu_only
+    )
     ret = []
     for src_path, tgt_path, aligns in zip(src_filepaths, tgt_filepaths, multi_aligns):
         src_path = Path(src_path)
@@ -144,11 +148,13 @@ def generate_text_pairs(
         for align in aligns:
             src_line = [src_lines[i] for i in align["src"]]
             tgt_line = [tgt_lines[i] for i in align["tgt"]]
-            tmp.append({
-                "src_numbers": align["src"],
-                "tgt_numbers": align["tgt"],
-                "src_texts": src_line,
-                "tgt_texts": tgt_line,
-            })
+            tmp.append(
+                {
+                    "src_numbers": align["src"],
+                    "tgt_numbers": align["tgt"],
+                    "src_texts": src_line,
+                    "tgt_texts": tgt_line,
+                }
+            )
         ret.append(tmp)
     return ret

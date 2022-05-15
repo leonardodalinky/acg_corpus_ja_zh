@@ -4,6 +4,7 @@ from . import common
 from . import epub
 from data_process import Document
 from pathlib import Path
+from pathvalidate import sanitize_filename
 
 
 def register_subparser(parser: argparse.ArgumentParser):
@@ -51,7 +52,7 @@ def register_subparser(parser: argparse.ArgumentParser):
     parser.set_defaults(func=main)
 
 
-def epub_clean(input_filepath: Path, output_dir: Path, threshold=0.05, min_keep_len=1000):
+def epub_extract(input_filepath: Path, output_dir: Path, threshold=0.05, min_keep_len=1000):
     epub_docs = epub.read_docs_from_epub(input_filepath)
     epub_docs = common.filter_docs_by_threshold(epub_docs, threshold, min_keep_len)
     docs = [Document.from_epub(doc) for doc in epub_docs]
@@ -60,6 +61,7 @@ def epub_clean(input_filepath: Path, output_dir: Path, threshold=0.05, min_keep_
         filename += f"__{doc.chapter_id}" if doc.chapter_id else ""
         filename += f"__{doc.title}" if doc.title else ""
         filename += ".stage1"
+        filename = sanitize_filename(filename)
         doc.save(output_dir / filename)
 
 
@@ -70,7 +72,7 @@ def main(args):
     assert not output_path.exists() or output_path.is_dir(), f"Output path is not a directory: {output_path}"
     output_path.mkdir(parents=True, exist_ok=True)
     if args.type == "epub":
-        epub_clean(
+        epub_extract(
             input_path,
             output_path,
             threshold=args.threshold,

@@ -12,7 +12,7 @@ def register_subparser(parser: argparse.ArgumentParser):
         metavar="FILE",
         required=True,
         nargs="+",
-        help="Path to source files.",
+        help="Path to source files. Each source file is a text file, whose each line is in source language.",
     )
     parser.add_argument(
         "-t",
@@ -21,7 +21,7 @@ def register_subparser(parser: argparse.ArgumentParser):
         metavar="FILE",
         required=True,
         nargs="+",
-        help="Path to target files.",
+        help="Path to target files. Each target file is a text file, whose each line is in target language.",
     )
     parser.add_argument(
         "-o",
@@ -29,20 +29,20 @@ def register_subparser(parser: argparse.ArgumentParser):
         type=str,
         metavar="DIR",
         required=True,
-        help="Path to output file. Should be a directory.",
+        help="Path to output file. Should be a directory. The output files will be named as source file name + '_' + target file name + '.json'.",
     )
     parser.add_argument(
         "--overlap",
         type=int,
         metavar="INT",
-        default=20,
+        default=10,
         help="Number of overlaps to generate. Default: 20.",
     )
     parser.add_argument(
         "--max-align-size",
         type=int,
         metavar="INT",
-        default=8,
+        default=10,
         help="Maximum alignment size. Default: 8.",
     )
     parser.add_argument(
