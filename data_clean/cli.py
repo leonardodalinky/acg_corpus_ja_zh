@@ -1,11 +1,9 @@
 import argparse
-import os
 
 from . import common
 from . import epub
 from data_process import Document
 from pathlib import Path
-from typing import *
 
 
 def register_subparser(parser: argparse.ArgumentParser):
