@@ -11,9 +11,7 @@ from .common import DocumentEpub
 __all__ = ["read_docs_from_epub"]
 
 
-def read_docs_from_epub(
-    file_path: Union[str, bytes, os.PathLike]
-) -> List[DocumentEpub]:
+def read_docs_from_epub(file_path: Union[str, bytes, os.PathLike]) -> List[DocumentEpub]:
     """
     Read epub file and return a list of documents. Each document corresponds to a chapter.
 
@@ -32,9 +30,7 @@ def read_docs_from_epub(
     return ret
 
 
-def _read_epub_to_text(
-    file_path: Union[str, bytes, os.PathLike]
-) -> List[Dict[str, Any]]:
+def _read_epub_to_text(file_path: Union[str, bytes, os.PathLike]) -> List[Dict[str, Any]]:
     """
     Read epub file and return a list of text. Each text corresponds to a chapter.
 
@@ -63,9 +59,7 @@ def _read_epub_to_text(
         ret.append(
             {
                 "title": title if title is not None and len(title) > 0 else None,
-                "file_stem": file_stem
-                if file_stem is not None and len(file_stem) > 0
-                else None,
+                "file_stem": file_stem if file_stem is not None and len(file_stem) > 0 else None,
                 "text": _normalize_epub_text(soup.get_text()),
             }
         )

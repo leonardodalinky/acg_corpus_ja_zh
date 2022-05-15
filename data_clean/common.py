@@ -6,9 +6,7 @@ __all__ = ["DocumentEpub", "filter_docs_by_threshold"]
 class DocumentEpub:
     __REPR_TEXT_LEN__ = 20
 
-    def __init__(
-        self, text: str, title: Optional[str] = None, chapter_id: Optional[str] = None
-    ):
+    def __init__(self, text: str, title: Optional[str] = None, chapter_id: Optional[str] = None):
         assert text is not None
         self.text = text
         self.title = title
@@ -37,7 +35,7 @@ def filter_docs_by_threshold(
     :param min_keep_len: if the length of a document is greater than this value, it will be kept.
     :return:
     """
-    assert 0.0 < threshold < 1.0
+    assert 0.0 <= threshold <= 1.0
     assert len(docs) > 0
     asc_docs = sorted(docs, key=lambda doc: len(doc))
     all_len = sum(len(doc) for doc in docs)

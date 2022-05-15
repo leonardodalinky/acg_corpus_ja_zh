@@ -1,0 +1,6 @@
+numpy
+# torch
+sentence_transformers
+cython
+ebooklib
+beautifulsoup4

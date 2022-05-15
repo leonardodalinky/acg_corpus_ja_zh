@@ -1,9 +1,9 @@
+import os
+from pathlib import Path
 from typing import *
 from data_clean import DocumentEpub
 
-__all__ = [
-    "Document"
-]
+__all__ = ["Document"]
 
 
 class Document:
@@ -26,6 +26,12 @@ class Document:
     def __len__(self):
         return len(self.sentences)
 
+    def __getitem__(self, item):
+        return self.sentences[item]
+
+    def __iter__(self):
+        return iter(self.sentences)
+
     @classmethod
     def from_epub(cls, doc: DocumentEpub):
         sentences = []
@@ -47,3 +53,14 @@ class Document:
         :return:
         """
         return sum([len(sentence) for sentence in self.sentences])
+
+    def save(self, file_path: Union[str, bytes, os.PathLike]):
+        def add_newline(ss: List[str]):
+            for idx, s in enumerate(ss):
+                if idx == len(ss) - 1:
+                    yield s
+                else:
+                    yield s + "\n"
+
+        with Path(file_path).open("w", encoding="utf-8") as f:
+            f.writelines(add_newline(self.sentences))

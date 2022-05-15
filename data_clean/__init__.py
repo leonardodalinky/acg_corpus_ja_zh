@@ -1,2 +1,2 @@
+from . import epub
 from .common import *
-from .epub import *
