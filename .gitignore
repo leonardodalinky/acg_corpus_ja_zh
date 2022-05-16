@@ -134,3 +134,4 @@ dmypy.json
 
 # temp files
 tmp_*
+.virtual_documents/

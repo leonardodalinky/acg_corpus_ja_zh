@@ -2,19 +2,18 @@ import io
 import os
 import sys
 import json
-import torch
 import logging
 import tempfile
-from pathlib import Path
 from typing import *
-from sentence_transformers import SentenceTransformer
+from pathlib import Path
 from contextlib import redirect_stdout
 
+import torch
+from sentence_transformers import SentenceTransformer
 
 sys.path.append(os.path.realpath(os.path.join(os.path.dirname(__file__), "..", "vecalign")))
 import vecalign.overlap as overlap
 import vecalign.vecalign as valign
-
 
 Alignment = Dict[str, List[int]]
 

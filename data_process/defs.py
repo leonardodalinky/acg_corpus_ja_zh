@@ -1,6 +1,7 @@
 import os
-from pathlib import Path
 from typing import *
+from pathlib import Path
+
 from data_extract import DocumentEpub
 
 __all__ = ["Document"]

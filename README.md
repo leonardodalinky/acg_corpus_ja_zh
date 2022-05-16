@@ -25,3 +25,28 @@ git submodule update --recursive
 ```
 pip install -r requirements.txt
 ```
+
+**对于开发者**，需要安装 pre-commit 脚本，用于检查代码规范:
+
+```bash
+pre-commit install
+```
+
+## 数据集构建流程
+
+数据集构建流程如下：
+* `data_extract`: 从原始数据中提取每章节的文本数据，将每章节转化为一个文件。
+* `data_process`: 将上述生成的章节文件，根据原始语言与目标语言，进行句子对齐。
+* `data_report`: 将句子对齐的结果进行可视化，目前支持 HTML。
+
+### 文本数据抽取
+
+详见 `data_extract` 中，目前支持将 epub 中的章节抽取。
+
+### 章节句子对齐
+
+详见 `data_process` 中，将同一章节的不同语种对应后，可以生成各章节中的句子对应结果。
+
+### 对齐可视化
+
+详见 `data_report` 中，可以对 JSON 形式的对齐结果进行可视化。

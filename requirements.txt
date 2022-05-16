@@ -5,3 +5,6 @@ cython
 ebooklib
 beautifulsoup4
 pathvalidate
+pre-commit
+black
+isort

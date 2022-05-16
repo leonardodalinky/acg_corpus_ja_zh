@@ -1,10 +1,11 @@
 import argparse
-
-from . import common
-from . import epub
-from data_process import Document
 from pathlib import Path
+
 from pathvalidate import sanitize_filename
+
+from data_process import Document
+
+from . import epub, common
 
 
 def register_subparser(parser: argparse.ArgumentParser):
@@ -14,7 +15,7 @@ def register_subparser(parser: argparse.ArgumentParser):
         type=str,
         required=True,
         choices=["epub"],
-        help="Type of datasource to clean.",
+        help="Type of datasource to extract from.",
     )
     parser.add_argument(
         "-i",

@@ -1,11 +1,13 @@
 import os
 import re
-import ebooklib
 import unicodedata
-from ebooklib import epub
-from bs4 import BeautifulSoup
-from pathlib import Path
 from typing import *
+from pathlib import Path
+
+import ebooklib
+from bs4 import BeautifulSoup
+from ebooklib import epub
+
 from .common import DocumentEpub
 
 __all__ = ["read_docs_from_epub"]

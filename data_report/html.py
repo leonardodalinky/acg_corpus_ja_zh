@@ -1,10 +1,8 @@
 import os
 import json
-from pathlib import Path
-from typing import *
-
-
 from string import Template
+from typing import *
+from pathlib import Path
 
 template = Template(
     """
@@ -38,7 +36,8 @@ template = Template(
   </template>
 </div>
 </body>
-""")
+"""
+)
 
 
 def make_html_report(input_file: Union[str, bytes, os.PathLike], output_file: Union[str, bytes, os.PathLike]) -> None:
