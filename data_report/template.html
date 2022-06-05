@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${filename}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+</head>
+<body>
+    <script>
+        // const data = [{src_numbers: [0], tgt_numbers: [0], src_texts: ["nmsl"], tgt_texts: ["你妈死了"]}];
+        const data = ${data};
+        const baseColor = function() {return tinycolor("#ffffcc");}
+        const blankColor = function() {return tinycolor("#ccffff");}
+        const colorGap = 8;
+    </script>
+    <div style="line-height: 1.5em" x-data="{ aligns: data }">
+        <template x-for="align in aligns">
+            <div style="display: flex; border-color: #ddd; border-style: solid; border-width: 0 0 1px">
+                <div lang="ja" style="flex: 1 0 0">
+                    <template x-if="align.src_texts.length >= 1">
+                        <template x-for="(text, idx) in align.src_texts">
+                            <div :style="{display: 'flex', 'background-color': align.src_texts.length <= 1? '' : baseColor().darken((align.src_texts.length - 2) * colorGap).toHexString()}">
+                                <span x-text="align.src_numbers[idx]" style="flex: 0 0 5ch"></span>
+                                <span x-text="text"></span>
+                            </div>
+                        </template>
+                    </template>
+                    <template x-if="align.src_texts.length === 0">
+                        <div :style="{display: 'flex', 'background-color': blankColor().toHexString()}">
+                            <span style="flex: 0 0 5ch"></span>
+                            <span>(Blank)</span>
+                        </div>
+                    </template>
+                </div>
+                <div style="flex: 0 0 8px; border: 0 solid #ddd; border-right-width: 1px;"></div>
+                <div style="flex: 0 0 8px"></div>
+                <div lang="zh" style="flex: 1 0 0">
+                    <template x-if="align.tgt_texts.length >= 1">
+                        <template x-for="(text, idx) in align.tgt_texts">
+                            <div :style="{display: 'flex', 'background-color': align.tgt_texts.length <= 1? '' : baseColor().darken((align.tgt_texts.length - 2) * colorGap).toHexString()}">
+                                <span x-text="align.tgt_numbers[idx]" style="flex: 0 0 5ch"></span>
+                                <span x-text="text"></span>
+                            </div>
+                        </template>
+                    </template>
+                    <template x-if="align.tgt_texts.length === 0">
+                        <div :style="{display: 'flex', 'background-color': blankColor().toHexString()}">
+                            <span style="flex: 0 0 5ch"></span>
+                            <span>(Blank)</span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </div>
+</body>
+</html>
