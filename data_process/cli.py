@@ -32,7 +32,8 @@ def register_subparser(parser: argparse.ArgumentParser):
         type=str,
         metavar="DIR",
         required=True,
-        help="Path to output file. Should be a directory. The output files will be named as source file name + '_' + target file name + '.json'.",
+        help="Path to output file. Should be a directory. "
+        "The output files will be named as source file name + '_' + target file name + '.json'.",
     )
     parser.add_argument(
         "-m",
@@ -41,7 +42,8 @@ def register_subparser(parser: argparse.ArgumentParser):
         type=int,
         metavar="INT",
         default=8,
-        help="Maximum alignment size. Default: 8.",
+        help="Maximum alignment size. Default: 8. "
+        "If sentence segmentation is applied, this should be larger than default value.",
     )
     parser.add_argument(
         "-w",

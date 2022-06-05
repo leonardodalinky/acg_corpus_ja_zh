@@ -8,6 +8,8 @@ pathvalidate
 pre-commit
 black
 isort
+trankit
+tqdm
 
 # requirements for bertalign:
 # numba

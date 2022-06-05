@@ -1,4 +1,5 @@
 import argparse
+from glob import glob
 from pathlib import Path
 
 from . import html
@@ -9,7 +10,7 @@ def register_subparser(parser: argparse.ArgumentParser):
         "input",
         type=str,
         metavar="FILE",
-        help="Make a html report of json output.",
+        help="Make a html report of json output",
     )
     parser.add_argument(
         "-o",
