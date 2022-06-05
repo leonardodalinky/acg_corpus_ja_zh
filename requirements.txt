@@ -8,3 +8,8 @@ pathvalidate
 pre-commit
 black
 isort
+
+# requirements for bertalign:
+# numba
+# faiss-cpu
+# faiss-gpu
