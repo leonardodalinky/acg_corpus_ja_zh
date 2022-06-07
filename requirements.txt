@@ -10,6 +10,7 @@ black
 isort
 trankit
 tqdm
+translate-toolkit
 
 # requirements for bertalign:
 # numba
